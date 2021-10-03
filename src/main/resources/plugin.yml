@@ -1,0 +1,5 @@
+name: Factions
+version: '${version}'
+main: me.ledovec.factions.Factions
+api-version: 1.17
+authors: [ Ledovec ]
