@@ -3,6 +3,7 @@ package me.ledovec.factions;
 import lombok.SneakyThrows;
 import me.ledovec.factions.crates.CratesSystem;
 import me.ledovec.factions.listeners.PlayerListener;
+import me.ledovec.factions.storing.MySQLConnector;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +22,8 @@ public class Factions extends JavaPlugin {
         file.mkdirs();
         checkRunningPlugins();
         cratesSystem.setupItemList();
+        MySQLConnector mySQLConnector = new MySQLConnector();
+        mySQLConnector.connect();
 
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
