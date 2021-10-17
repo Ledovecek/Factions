@@ -1,6 +1,7 @@
 package me.ledovec.factions.listeners;
 
 import com.google.gson.Gson;
+import me.ledovec.factions.currency.Money;
 import me.ledovec.factions.menus.RaceSelector;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -14,10 +15,14 @@ public class PlayerListener implements Listener {
     private final String TITLE1 = "§c<§2< §c§lFACTIONS §2>§c>";
     private final String SUBTITLE = "§eHave fun!";
 
+    private Money money;
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         Gson gson = new Gson();
+
+        money.createPlayerAccount(p);
 
         p.sendTitle(TITLE1, SUBTITLE);
 
