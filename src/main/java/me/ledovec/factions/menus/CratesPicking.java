@@ -3,6 +3,7 @@ package me.ledovec.factions.menus;
 import me.ledovec.factions.crates.CratesItemList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,6 +31,10 @@ public class CratesPicking {
         for (int i = 10; i < 19; i++) {
             inv.setItem(i, (ItemStack) itemsArrayList.get(1));
         }
+    }
+
+    public void openInventory(HumanEntity humanEntity) {
+        humanEntity.openInventory(inv);
     }
 
 }
