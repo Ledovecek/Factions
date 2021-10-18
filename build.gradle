@@ -31,7 +31,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compileOnly 'org.mongodb:mongodb-driver-reactivestreams:4.1.1'
+    implementation 'org.mongodb:mongo-java-driver:3.12.10'
 }
 
 def targetJavaVersion = 8

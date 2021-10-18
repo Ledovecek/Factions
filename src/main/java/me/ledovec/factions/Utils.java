@@ -21,7 +21,7 @@ public class Utils {
 
         meta.setDisplayName(name);
         meta.setLore(Arrays.asList(lore));
-        item.addEnchantments(enchantments);
+        item.addUnsafeEnchantments(enchantments);
         item.setItemMeta(meta);
 
         return item;
@@ -33,7 +33,7 @@ public class Utils {
 
         meta.setDisplayName(name);
         meta.setLore(Arrays.asList(lore));
-        item.addEnchantment(Enchantment.DURABILITY, 10);
+        item.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
         item.setItemMeta(meta);
 
         return item;

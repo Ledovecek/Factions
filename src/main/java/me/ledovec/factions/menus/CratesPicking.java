@@ -25,11 +25,11 @@ public class CratesPicking {
         CratesItemList cratesItemList = new CratesItemList();
          ArrayList itemsArrayList = cratesItemList.getItemsArrayList();
 
-        for (int i = 0; i < 10; i++) inv.setItem(i, createNonEnchantedItem(Material.BLACK_STAINED_GLASS_PANE, "§e"));
-        for (int i = 19; i < 28; i++) inv.setItem(i, createNonEnchantedItem(Material.BLACK_STAINED_GLASS_PANE, "§e"));
+        for (int i = 1; i < 9; i++) inv.setItem(i, createNonEnchantedItem(Material.BLACK_STAINED_GLASS_PANE, "§e"));
+        for (int i = 19; i < 27; i++) inv.setItem(i, createNonEnchantedItem(Material.BLACK_STAINED_GLASS_PANE, "§e"));
 
-        for (int i = 10; i < 19; i++) {
-            inv.setItem(i, (ItemStack) itemsArrayList.get(1));
+        for (int i = 10; i < 18; i++) {
+            inv.setItem(i, (ItemStack) cratesItemList.getItemsArrayList().get(1));
         }
     }
 
