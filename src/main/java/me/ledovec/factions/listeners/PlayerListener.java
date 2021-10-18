@@ -34,6 +34,12 @@ public class PlayerListener implements Listener {
             sqlStatements.storePlayer(p.getUniqueId(), p.getName(), 10000, "not-selected", p.getAddress().getHostString());
         }
 
+        if(p.hasPermission("factions.premium.join")) {
+            e.setJoinMessage("§a§l[+] " + p.getDisplayName() + " §fhas joined the server");
+        } else {
+            e.setJoinMessage("cs");
+        }
+
         //TODO: Kontrola jestli hrac nema jiz vybranou roli
         p.teleport(new Location(Bukkit.getWorld("world"), 37.5, 62, 120.5, 90, 0));
         RaceSelector.open(e.getPlayer());

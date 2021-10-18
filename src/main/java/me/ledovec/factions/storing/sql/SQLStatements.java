@@ -2,10 +2,7 @@ package me.ledovec.factions.storing.sql;
 
 import me.ledovec.factions.storing.MySQLConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.UUID;
 
 public class SQLStatements {
@@ -34,7 +31,15 @@ public class SQLStatements {
     public void controlRaces() throws SQLException {
         PreparedStatement statement;
         statement = connection.prepareStatement("SELECT `nickname` FROM `factions_players` WHERE `race` = 'not-selected'");
-        statement.execute();
+        ResultSet results = statement.executeQuery();
+        ResultSetMetaData metaData = results.getMetaData();
+        while(results.next()) {
+            int index = results.getRow();
+            String name = metaData.getColumnName(0);
+            String value = results.getString(0);
+        }
+        results.close();
+        statement.close();
     }
 
 }
