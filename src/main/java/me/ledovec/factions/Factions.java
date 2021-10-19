@@ -1,10 +1,10 @@
 package me.ledovec.factions;
 
 import lombok.SneakyThrows;
+import me.ledovec.factions.commands.LookupCommand;
 import me.ledovec.factions.crates.CratesItemList;
 import me.ledovec.factions.listeners.PlayerListener;
 import me.ledovec.factions.storing.MySQLConnector;
-import me.ledovec.factions.storing.sql.SQLStatements;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +25,7 @@ public class Factions extends JavaPlugin {
         checkRunningPlugins();
         cratesItemList.setup();
         mySQLConnector.connect();
+        commandRegister();
 
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
@@ -35,6 +36,10 @@ public class Factions extends JavaPlugin {
         HandlerList.unregisterAll();
         mySQLConnector.connection.close();
         cratesItemList.getItemsArrayList().clear();
+    }
+
+    private void commandRegister() {
+        getCommand("lookup").setExecutor(new LookupCommand());
     }
 
 }

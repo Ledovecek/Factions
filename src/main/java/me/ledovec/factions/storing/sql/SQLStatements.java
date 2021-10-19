@@ -17,15 +17,28 @@ public class SQLStatements {
     }
 
     //TODO: First / Last login
-    public void storePlayer(UUID uuid, String name, double money, String race, String ip) throws SQLException {
+    public void storePlayer(UUID uuid, String name, double money, String race, String firstIP, String lastIP) throws SQLException {
         PreparedStatement statement;
-        statement = connection.prepareStatement("INSERT INTO factions_players VALUES (?,?,?,?,?)");
+        statement = connection.prepareStatement("INSERT INTO factions_players VALUES (?,?,?,?,?,?)");
         statement.setString(1, String.valueOf(uuid));
         statement.setString(2, name);
         statement.setDouble(3, money);
         statement.setString(4, race);
-        statement.setString(5, ip);
+        statement.setString(5, firstIP);
+        statement.setString(6, lastIP);
         statement.execute();
+        statement.close();
+    }
+
+    public void updatePlayer(UUID uuid, double money, String race,String ip) throws SQLException {
+        PreparedStatement statement;
+        statement = connection.prepareStatement("UPDATE factions_players SET money=?, race=?,lastIP=? WHERE uuid = ?");
+        statement.setDouble(1, money);
+        statement.setString(2, ip);
+        statement.setString(3, race);
+        statement.setString(4, String.valueOf(uuid));
+        statement.execute();
+        statement.close();
     }
 
     public void controlRaces() throws SQLException {
