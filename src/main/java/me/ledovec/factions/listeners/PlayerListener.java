@@ -36,23 +36,20 @@ public class PlayerListener implements Listener {
 
         p.sendTitle(TITLE1, SUBTITLE);
         actionbar.start(p);
-        bossbar.start(p);
+        //bossbar.start(p);
         if(!p.hasPlayedBefore()) {
             sqlStatements.storePlayer(p.getUniqueId(), p.getName(), 10000, "not-selected", p.getAddress().getHostString(), p.getAddress().getHostString());
         } else {
-            sqlStatements.updatePlayer(p.getUniqueId(), 120, "Dwarf",p.getAddress().getHostString());
+            sqlStatements.updatePlayer(p.getUniqueId(), 120, "not-selected", p.getAddress().getHostString());
         }
-
         if(p.hasPermission("factions.premium.join")) {
             e.setJoinMessage("§a§l[+] " + p.getDisplayName() + " §fhas joined the server");
         } else {
             e.setJoinMessage("");
         }
+        if(sqlStatements.getPlayerRace(p.getName()) != null) RaceSelector.open(p);
 
-        //TODO: Kontrola jestli hrac nema jiz vybranou roli
         p.teleport(new Location(Bukkit.getWorld("world"), 37.5, 62, 120.5, 90, 0));
-        RaceSelector.open(e.getPlayer());
-
         p.sendMessage("§a§l[!] §fYou've joined on the §cFactions §fserver.");
     }
 

@@ -34,25 +34,25 @@ public class SQLStatements {
         PreparedStatement statement;
         statement = connection.prepareStatement("UPDATE factions_players SET money=?, race=?,lastIP=? WHERE uuid = ?");
         statement.setDouble(1, money);
-        statement.setString(2, ip);
-        statement.setString(3, race);
+        statement.setString(2, race);
+        statement.setString(3, ip);
         statement.setString(4, String.valueOf(uuid));
         statement.execute();
         statement.close();
     }
 
-    public void controlRaces() throws SQLException {
+    public String getPlayerRace(String playerName) throws SQLException {
         PreparedStatement statement;
-        statement = connection.prepareStatement("SELECT `nickname` FROM `factions_players` WHERE `race` = 'not-selected'");
+        statement = connection.prepareStatement("SELECT `nickname` FROM `factions_players` WHERE `race` = 'not-selected' AND `nickname` = ?");
+        statement.setString(1, playerName);
         ResultSet results = statement.executeQuery();
         ResultSetMetaData metaData = results.getMetaData();
-        while(results.next()) {
-            int index = results.getRow();
-            String name = metaData.getColumnName(0);
-            String value = results.getString(0);
-        }
+        int index = results.getRow();
+        String name = metaData.getColumnName(0);
+        String value = results.getString(0);
         results.close();
         statement.close();
+        return value;
     }
 
 }
